@@ -32,7 +32,7 @@ def show_sales():
     return render_template("sales_data.html", table=rows_only)
 
 # Route to render the add sales data form
-@sales.route('/add_sales_data', methods=['GET', 'POST'])
+@sales.route('/', methods=['GET', 'POST'])
 def add_sales_data():
     if request.method == 'POST':
         monthly_amount = request.form['monthly_amount']

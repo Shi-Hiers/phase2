@@ -2,6 +2,7 @@ from flask import Flask, g
 from .app_factory import create_app
 from .db_connect import close_db, get_db
 
+
 app = create_app()
 app.secret_key = 'your-secret'  # Replace with an environment variable
 
@@ -9,6 +10,9 @@ app.secret_key = 'your-secret'  # Replace with an environment variable
 from app.blueprints.sales import sales
 
 app.register_blueprint(sales)
+
+from app.blueprints.regions import regions_bp
+app.register_blueprint(regions_bp)
 
 from . import routes
 

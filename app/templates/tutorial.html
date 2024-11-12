@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Home - Music Education Website{% endblock %}
+{% block content %}
+
+<div class="jumbotron text-center bg-warning text-dark">
+    <h2>Explore Our Music Tutorials</h2>
+    <p class="lead">Dive into our collection of music tutorials designed to help you learn instruments, music theory, and practical techniques. No matter your skill level, there's something here for you!</p>
+</div>
+<h3 class="mt-5">Recommended Video Tutorials</h3>
+<p>Explore these videos to deepen your understanding of music theory, piano basics, and guitar chords. Each video provides focused, informative content to help you on your musical journey.</p>
+<ul class="list-group list-group-flush mt-3">
+    <li class="list-group-item"><a href="https://www.youtube.com/watch?v=mWpXy57-mvc" target="_blank">Introduction to Music Theory - An informative video that teaches the basics of music theory.</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/watch?v=tEtukfFv3Wk" target="_blank">How to Play Piano for Beginners - A step-by-step guide for those new to the piano.</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/watch?v=WGIcfDCWysQ" target="_blank">Guitar Chords for Beginners - Learn essential guitar chords to get started playing songs.</a></li>
+</ul>
+<div class="mt-5"></div>
+<div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/guitar_basics.jpg') }}" class="card-img-top" alt="Time Signitures">
+                <div class="card-body">
+                    <h5 class="card-title">Basics of time signatures</h5>
+                    <p class="card-text">Understand the fundamentals of time signatures and how they structure musical rhythm.</p>
+                    <a href="https://www.skoove.com/blog/time-signatures-explained/" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/circle_of_fifths.jpg') }}" class="card-img-top" alt="Reading sheet music">
+                <div class="card-body">
+    <h5 class="card-title">How To Read Sheet Music</h5>
+    <p class="card-text">Learn how to read sheet music, from notes to dynamics, and start playing your favorite songs.</p>
+    <a href="https://www.musicnotes.com/blog/how-to-read-sheet-music/?srsltid=AfmBOopmZjaoDm5I6h_2d9LTY2bQ9fWebnAQwRTuWTmuRiwbzyLeJC1q" class="btn btn-primary">Explore Now</a>
+</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/music_theory.jpg') }}" class="card-img-top" alt="Practicing Techniques">
+                <div class="card-body">
+                    <h5 class="card-title">Techniques For Developing A Musical Practice</h5>
+                    <p class="card-text">Discover effective techniques for building a consistent and productive musical practice routine.</p>
+                    <a href="https://phillymusiclessons.com/10-practice-techniques/" class="btn btn-primary">Learn Techniques</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

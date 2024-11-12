@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Quiz & Practice - Music Education Website{% endblock %}
+{% block content %}
+<h2>Music Theory Quizzes and Practice</h2>
+<p>Test your knowledge of music theory and improve your listening skills with our quizzes and practice exercises!</p>
+<div>
+    <!-- Example Quiz Section -->
+    <h3>Music Theory Quiz</h3>
+    <p>Question: What is the interval between C and G?</p>
+    <input type="radio" id="fifth" name="interval" value="fifth">
+    <label for="fifth">Perfect Fifth</label><br>
+    <input type="radio" id="fourth" name="interval" value="fourth">
+    <label for="fourth">Perfect Fourth</label><br>
+    <input type="radio" id="third" name="interval" value="third">
+    <label for="third">Major Third</label><br>
+    <button>Submit</button>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Instructors - Music Education Website{% endblock %}
+{% block content %}
+<h2>Meet Our Instructors</h2>
+<ul>
+    {% for instructor in instructors %}
+        <li>
+            <h3>{{ instructor.name }}</h3>
+            <p>Specialty: {{ instructor.specialty }}</p>
+            <p>{{ instructor.bio }}</p>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

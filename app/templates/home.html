@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home - Music Education Website{% endblock %}
+{% block content %}
+
+<div class="jumbotron text-center bg-info text-dark">
+    <h2>Welcome to the Music Education Website</h2>
+    <p class="lead">Explore our music lessons, tutorials, and educational resources for all levels of musicians. Whether you are a beginner or an advanced musician, we have something for you!</p>
+    <a class="btn btn-primary btn-lg" href="/tutorials" role="button">Start Learning</a>
+</div>
+
+<div class="featured-section mt-5 p-4 bg-light rounded">
+    <h3 class="text-center text-info">Featured Lessons</h3>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a href="/tutorials">Learn Guitar Basics</a></li>
+        <li class="list-group-item"><a href="/music_theory_hub">Master the Circle of Fifths</a></li>
+        <li class="list-group-item"><a href="/quiz_practice">Test Your Music Theory Knowledge</a></li>
+    </ul>
+</div>
+
+<div class="about-section mt-5 p-4 bg-light text-dark rounded">
+    <h3>About Us</h3>
+<img src="{{ url_for('static', filename='assets/music_ed.jpg') }}" alt="About Us" class="img-fluid rounded mb-4" style="width: 280px; height: auto;">    <p>Our mission is to make learning music accessible and fun for everyone. From comprehensive tutorials to interactive exercises, we provide tools to help you grow as a musician.</p>
+</div>
+{% endblock %}

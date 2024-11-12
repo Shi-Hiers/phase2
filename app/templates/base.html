@@ -3,30 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>{% block title %}Music Education Website{% endblock %}</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+        .featured-section, .about-section {
+            background-color: #e9f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .featured-section img, .about-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        h2, h3 {
+            color: #0066cc;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Music Education Website</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/tutorials">Tutorials</a></li>
-                <li><a href="/music_theory_hub">Music Theory Hub</a></li>
-                <li><a href="/quiz_practice">Quiz & Practice</a></li>
-                <li><a href="/instructors">Instructors</a></li>
-                <li><a href="/resources">Resources</a></li>
-                <li><a href="/forum">Community Forum</a></li>
-                <li><a href="/testimonials">Testimonials</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    <footer>
-        <p>&copy; 2024 Music Education Website</p>
-    </footer>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Music Education</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/tutorials">Tutorials</a></li>
+            <li class="nav-item"><a class="nav-link" href="/music_theory_hub">Music Theory Hub</a></li>
+            <li class="nav-item"><a class="nav-link" href="/quiz_practice">Quiz & Practice</a></li>
+            <li class="nav-item"><a class="nav-link" href="/instructors">Instructors</a></li>
+            <li class="nav-item"><a class="nav-link" href="/resources">Resources</a></li>
+            <li class="nav-item"><a class="nav-link" href="/forum">Community Forum</a></li>
+            <li class="nav-item"><a class="nav-link" href="/testimonials">Testimonials</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- Include jQuery (full version) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Popper.js and Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Block for page-specific scripts -->
+{% block scripts %}{% endblock %}
 </body>
 </html>

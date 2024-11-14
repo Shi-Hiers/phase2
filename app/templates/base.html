@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>{% block title %}Music Education Website{% endblock %}</title>
+    <title>{% block title %}Clefver Music Education{% endblock %}</title>
     <style>
         body {
-            background-color: #f0f8ff;
+            background-color: #fffacd; /* Light yellow background color */
         }
         .featured-section, .about-section {
             background-color: #e9f7ff;
@@ -29,7 +29,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Music Education</a>
+    <a class="navbar-brand" href="#">Clefver Music Education</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,7 +40,6 @@
             <li class="nav-item"><a class="nav-link" href="/music_theory_hub">Music Theory Hub</a></li>
             <li class="nav-item"><a class="nav-link" href="/quiz_practice">Quiz & Practice</a></li>
             <li class="nav-item"><a class="nav-link" href="/instructors">Instructors</a></li>
-            <li class="nav-item"><a class="nav-link" href="/resources">Resources</a></li>
             <li class="nav-item"><a class="nav-link" href="/forum">Community Forum</a></li>
             <li class="nav-item"><a class="nav-link" href="/testimonials">Testimonials</a></li>
         </ul>

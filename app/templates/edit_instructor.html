@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Edit Instructor - Music Education Website{% endblock %}
+{% block content %}
+<h2>Edit Instructor</h2>
+
+<form method="POST" action="{{ url_for('instructors.edit_instructor', instructor_id=instructor.instructor_id) }}">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" class="form-control" required value="{{ instructor.name }}">
+    </div>
+
+    <div class="form-group">
+        <label for="specialty">Specialty:</label>
+        <input type="text" id="specialty" name="specialty" class="form-control" required value="{{ instructor.specialty }}">
+    </div>
+
+    <div class="form-group">
+        <label for="bio">Biography:</label>
+        <textarea id="bio" name="bio" class="form-control">{{ instructor.bio }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Instructor</button>
+</form>
+{% endblock %}

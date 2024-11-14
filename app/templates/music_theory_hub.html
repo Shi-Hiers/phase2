@@ -1,24 +1,70 @@
 {% extends "base.html" %}
 {% block title %}Music Theory Hub - Music Education Website{% endblock %}
 {% block content %}
-<h2>Interactive Music Theory Tools</h2>
-<p>Explore our interactive tools to learn music theory in an engaging way. Practice scales, chords, and ear training exercises to improve your understanding of music fundamentals.</p>
 
+<div class="jumbotron text-center bg-warning text-dark">
+    <h2>Interactive Music Theory Tools</h2>
+    <p class="lead">Explore our interactive tools to learn music theory in an engaging way. Practice scales, chords, and ear training exercises to improve your understanding of music fundamentals.</p>
+</div>
+<!-- Interactive Touchable Piano -->
+<div class="touchable-piano mt-5">
+    <h3>Interactive Piano</h3>
+    <p>Click on the keys to hear the notes and practice playing scales, chords, and individual notes!</p>
+
+    <!-- Note Labels Above Keys -->
+    <div class="note-labels">
+        <div class="note-label">C</div>
+        <div class="note-label">D</div>
+        <div class="note-label">E</div>
+        <div class="note-label">F</div>
+        <div class="note-label">G</div>
+        <div class="note-label">A</div>
+        <div class="note-label">B</div>
+        <div class="note-label">C</div>
+    </div>
+
+    <!-- Piano Keys -->
+    <div class="piano">
+        <div class="white-key" data-note="C"></div>
+        <div class="white-key" data-note="D"></div>
+        <div class="white-key" data-note="E"></div>
+        <div class="white-key" data-note="F"></div>
+        <div class="white-key" data-note="G"></div>
+        <div class="white-key" data-note="A"></div>
+        <div class="white-key" data-note="B"></div>
+        <div class="white-key" data-note="C"></div>
+    </div>
+</div>
+
+<!-- Note Guessing Game -->
 <div class="note-guessing mt-5">
     <h3>Note Guessing Game</h3>
     <p>Listen to a note and try to guess which note it is. Click the button to play a note and type your answer.</p>
     <button onclick="playRandomNote()" class="btn btn-primary">Play Note</button>
 </div>
 
-<div class="chord-sequence mt-5">
-    <h3>Next Note in Chord Sequence</h3>
-    <p>Listen to a chord sequence and guess the next note in the sequence. Click the button to hear the sequence and type your answer.</p>
-    <button onclick="playChordSequence()" class="btn btn-primary">Play Chord Sequence</button>
+<!-- Chord Matching Game -->
+<div class="chord-matching mt-5">
+    <h3>Chord Matching Game</h3>
+    <p>Learn the first four chords every guitar beginner should know! Listen to the chords and try to match them correctly. Click the button to play a chord and select the correct answer.</p>
+    <button onclick="playRandomChord()" class="btn btn-primary">Play Chord</button>
+    <select id="chord-select" class="mt-3">
+        <option value="E_minor">E Minor</option>
+        <option value="C_major">C Major</option>
+        <option value="G_major">G Major</option>
+        <option value="D_sus4">D Sus4</option>
+    </select>
+    <button onclick="checkChordAnswer()" class="btn btn-success mt-2">Submit Answer</button>
 </div>
 
+<!-- Scales Trainer -->
 <div class="scales-trainer mt-5">
     <h3>Interactive Scales Trainer</h3>
     <p>Use the interactive scales trainer to practice playing different scales and see how they sound. Select a scale and click through the notes to follow along.</p>
+
+    <!-- Display notes being played -->
+    <h4 id="current-note" class="text-info mt-3"></h4>
+
     <label for="scale-select">Choose a scale:</label>
     <select id="scale-select">
         <option value="C_major">C Major</option>
@@ -29,6 +75,12 @@
 </div>
 
 <script>
+    // Update current note display
+    function updateCurrentNoteDisplay(note) {
+        document.getElementById('current-note').innerText = `Now Playing: ${note}`;
+    }
+
+    // Play selected scale
     function playSelectedScale() {
         const scale = document.getElementById('scale-select').value;
         playScale(scale);
@@ -43,31 +95,24 @@
 
         let delay = 0;
         scales[scale].forEach(note => {
-            setTimeout(() => playNote(note), delay);
+            setTimeout(() => {
+                playNoteWithIfStatement(note);
+                updateCurrentNoteDisplay(note);
+            }, delay);
             delay += 500; // 500 ms between notes
         });
     }
 
+    // Play random note for guessing game
     function playRandomNote() {
-        const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+        const notes = ['C', 'D', 'E', 'F', 'F#', 'G', 'A', 'B', 'C'];
         const randomNote = notes[Math.floor(Math.random() * notes.length)];
         playNoteWithIfStatement(randomNote);
+        updateCurrentNoteDisplay(randomNote);
 
         setTimeout(() => {
             const userAnswer = prompt('What note did you hear?');
-            if (randomNote === 'C' && userAnswer.toLowerCase() === 'c') {
-                alert('Correct!');
-            } else if (randomNote === 'D' && userAnswer.toLowerCase() === 'd') {
-                alert('Correct!');
-            } else if (randomNote === 'E' && userAnswer.toLowerCase() === 'e') {
-                alert('Correct!');
-            } else if (randomNote === 'F' && userAnswer.toLowerCase() === 'f') {
-                alert('Correct!');
-            } else if (randomNote === 'G' && userAnswer.toLowerCase() === 'g') {
-                alert('Correct!');
-            } else if (randomNote === 'A' && userAnswer.toLowerCase() === 'a') {
-                alert('Correct!');
-            } else if (randomNote === 'B' && userAnswer.toLowerCase() === 'b') {
+            if (randomNote.toUpperCase() === userAnswer.toUpperCase()) {
                 alert('Correct!');
             } else {
                 alert(`Incorrect. The correct answer was: ${randomNote}`);
@@ -75,70 +120,115 @@
         }, 1000);
     }
 
+    // Play random chord for chord matching game
+    function playRandomChord() {
+        const chords = {
+            'E_minor': 'E_minor.wav',
+            'C_major': 'C_major.wav',
+            'G_major': 'G_major.wav',
+            'D_sus4': 'D_major.wav'
+        };
+        const chordNames = Object.keys(chords);
+        const randomChord = chordNames[Math.floor(Math.random() * chordNames.length)];
+
+        // Play the chord audio
+        playChordAudio(chords[randomChord]);
+
+        document.getElementById('chord-select').setAttribute('data-current-chord', randomChord);
+    }
+
+    // Play chord audio
+    function playChordAudio(audioFile) {
+        if (audioFile) {
+            const audio = new Audio(`/static/audio/${audioFile}`);
+            audio.play().catch(error => {
+                console.error(`Error playing chord ${audioFile}:`, error);
+            });
+        }
+    }
+
+    // Check if chord answer is correct
+    function checkChordAnswer() {
+        const selectedChord = document.getElementById('chord-select').value;
+        const currentChord = document.getElementById('chord-select').getAttribute('data-current-chord');
+
+        if (selectedChord === currentChord) {
+            alert('Correct!');
+        } else {
+            alert(`Incorrect. The correct answer was: ${currentChord}`);
+        }
+    }
+
+    // Play a note based on the given note name
     function playNoteWithIfStatement(note) {
         let audioFile = '';
         if (note === 'C') {
             audioFile = 'piano-c_C_major.wav';
+        } else if (note === 'C2') {
+            audioFile = 'piano-c2_C2_major.wav';
+        } else if (note === 'C#') {
+            audioFile = 'piano-csharp_Csharp_major.wav';
         } else if (note === 'D') {
-            audioFile = 'piano-d.wav';
+            audioFile = 'piano-d_D_major.wav';
+        } else if (note === 'D#') {
+            audioFile = 'piano-dsharp_Dsharp_major.wav';
         } else if (note === 'E') {
-            audioFile = 'piano-e.wav';
+            audioFile = 'piano-e_E_major.wav';
         } else if (note === 'F') {
-            audioFile = 'piano-f.wav';
+            audioFile = 'piano-f_F_major.wav';
+        } else if (note === 'F#') {
+            audioFile = 'piano-fsharp_Fsharp_major.wav';
         } else if (note === 'G') {
-            audioFile = 'piano-g.wav';
+            audioFile = 'piano-g_G_major.wav';
+        } else if (note === 'G#') {
+            audioFile = 'piano-gsharp_Gsharp_major.wav';
         } else if (note === 'A') {
-            audioFile = 'piano-a.wav';
+            audioFile = 'piano-a_A_major.wav';
+        } else if (note === 'A#') {
+            audioFile = 'piano-asharp_Asharp_major.wav';
         } else if (note === 'B') {
-            audioFile = 'piano-b.wav';
+            audioFile = 'piano-b_B_major.wav';
         }
 
-        const audio = new Audio(`/static/audio/${audioFile}`);
-        audio.play().catch(error => {
-            console.error(`Error playing note ${note}:`, error);
-        });
+        if (audioFile) {
+            const audio = new Audio(`/static/audio/${audioFile}`);
+            audio.play().catch(error => {
+                console.error(`Error playing note ${note}:`, error);
+            });
+        }
     }
 
-    function playChordSequence() {
-        const sequences = [
-            {
-                notes: ['C', 'E', 'G'],
-                nextNote: 'C'
-            },
-            {
-                notes: ['G', 'B', 'D'],
-                nextNote: 'G'
-            },
-            {
-                notes: ['A', 'C', 'E'],
-                nextNote: 'A'
-            }
-        ];
-
-        const randomIndex = Math.floor(Math.random() * sequences.length);
-        const sequence = sequences[randomIndex];
-
-        sequence.notes.forEach((note, index) => {
-            setTimeout(() => playNoteWithIfStatement(note), index * 1000);
+    // Handle piano key click event to play the corresponding note
+    document.querySelectorAll('.white-key, .black-key').forEach(key => {
+        key.addEventListener('click', () => {
+            const note = key.getAttribute('data-note');
+            playNoteWithIfStatement(note);
+            updateCurrentNoteDisplay(note);
         });
-
-        setTimeout(() => {
-            const userAnswer = prompt('What is the next note in the sequence?');
-            if (userAnswer.toLowerCase() === sequence.nextNote.toLowerCase()) {
-                alert('Correct!');
-            } else {
-                alert(`Incorrect. The correct answer was: ${sequence.nextNote}`);
-            }
-        }, sequence.notes.length * 1000 + 500);
-    }
+    });
 </script>
 
 <style>
+    .note-labels {
+        display: flex;
+        justify-content: center;
+        width: 700px;
+        margin: 10px auto 0;
+        font-weight: bold;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .note-label {
+        width: 60px;
+        text-align: center;
+    }
+
     .piano {
         display: flex;
         justify-content: center;
-        width: 600px;
-        margin: 0 auto;
+        width: 700px;
+        margin: 10px auto;
     }
 
     .white-key {
@@ -154,16 +244,10 @@
         height: 120px;
         background: black;
         position: absolute;
-        margin-left: -20px;
+        left: 45px;
         z-index: 1;
     }
-
-    .black-key[data-note="C#"], .black-key[data-note="D#"], .black-key[data-note="F#"], .black-key[data-note="G#"], .black-key[data-note="A#"] {
-        left: 40px;
-    }
-
-    .chords-library button {
-        margin: 5px;
-    }
 </style>
+
 {% endblock %}
+

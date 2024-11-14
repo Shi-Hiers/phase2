@@ -20,3 +20,13 @@ def quiz_practice():
     return render_template('quiz_practice.html')
 
 
+
+@app.route('/instructors')
+def instructors():
+    return render_template('instructors.html')
+
+@app.route('/testimonials')
+def testimonials():
+    return render_template('testimonials.html')
+
+

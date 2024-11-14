@@ -1,14 +1,36 @@
 {% extends "base.html" %}
 {% block title %}Instructors - Music Education Website{% endblock %}
 {% block content %}
-<h2>Meet Our Instructors</h2>
-<ul>
-    {% for instructor in instructors %}
-        <li>
-            <h3>{{ instructor.name }}</h3>
-            <p>Specialty: {{ instructor.specialty }}</p>
-            <p>{{ instructor.bio }}</p>
-        </li>
-    {% endfor %}
-</ul>
+
+<div class="jumbotron text-center bg-warning text-dark">
+    <h2>Meet Our Instructors</h2>
+    <p class="lead">Our dedicated instructors are here to guide you through your musical journey, from basics to advanced techniques. Learn more about each instructor and find the right fit for your learning style.</p>
+    <a href="{{ url_for('instructors.add_instructor') }}" class="btn btn-primary btn-lg" role="button">Add Instructor</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>Biography</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for instructor in instructors %}
+            <tr>
+                <td>{{ instructor.name }}</td>
+                <td>{{ instructor.specialty }}</td>
+                <td>{{ instructor.bio }}</td>
+                <td>
+                    <a href="{{ url_for('instructors.edit_instructor', instructor_id=instructor.instructor_id) }}" class="btn btn-secondary">Edit</a>
+                    <form action="{{ url_for('instructors.delete_instructor', instructor_id=instructor.instructor_id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

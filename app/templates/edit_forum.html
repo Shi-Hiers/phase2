@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Edit Forum Post - Music Education Website{% endblock %}
+{% block content %}
+<div class="jumbotron text-center bg-warning text-dark">
+    <h2>Edit Your Post</h2>
+    <p class="lead">Update your post to make it even better!</p>
+</div>
+
+<form action="{{ url_for('forum.edit_post', post_id=post.post_id) }}" method="POST">
+    <div class="form-group">
+        <label for="title">Topic:</label>
+        <input type="text" id="title" name="title" class="form-control" value="{{ post.topic }}" required>
+    </div>
+    <div class="form-group mt-3">
+        <label for="content">Post Content:</label>
+        <textarea id="content" name="content" class="form-control" rows="4" required>{{ post.post_content }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Update Post</button>
+</form>
+{% endblock %}

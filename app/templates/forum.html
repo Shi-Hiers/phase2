@@ -1,14 +1,89 @@
 {% extends "base.html" %}
 {% block title %}Community Forum - Music Education Website{% endblock %}
 {% block content %}
-<h2>Community Forum</h2>
-<p>Post your questions, share tips, and discuss anything related to music!</p>
-<!-- Placeholder for forum posts -->
+<div class="jumbotron text-center bg-warning text-dark">
+    <h2>Welcome to the Community Forum</h2>
+    <p class="lead">Post your questions, share tips, and discuss anything related to music! Join our community to learn, share, and grow as musicians together.</p>
+    <a href="{{ url_for('forum.add_post') }}" class="btn btn-primary mb-4">Add New Post</a>
+
+</div>
+
+<!-- Display Forum Posts -->
 <div>
     <h3>User Posts</h3>
-    <ul>
-        <li><strong>John Doe:</strong> How do I improve my chord transitions on guitar?</li>
-        <li><strong>Jane Smith:</strong> Can someone recommend beginner piano sheet music?</li>
+    <ul class="list-group">
+        {% for post in posts %}
+            <li class="list-group-item mb-4">
+                <strong>{{ post.user_name }} posted on "{{ post.topic }}" at {{ post.created_at }}:</strong>
+                <p>{{ post.post_content }}</p>
+                <p>Likes: <span id="like-count-{{ post.post_id }}">{{ post.likes_count }}</span></p>
+                <button class="btn btn-outline-primary btn-sm" onclick="likePost({{ post.post_id }})">Like</button>
+
+                <!-- Edit and Delete Buttons for Posts -->
+                <a href="{{ url_for('forum.edit_post', post_id=post.post_id) }}" class="btn btn-outline-secondary btn-sm mt-2">Edit</a>
+                <form action="{{ url_for('forum.delete_post', post_id=post.post_id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-outline-danger btn-sm mt-2">Delete</button>
+                </form>
+
+                <!-- Reply Section -->
+                <div class="mt-3">
+                    <h5>Replies</h5>
+                    {% for reply in post.replies %}
+                        <div class="mb-2 ml-4">
+                            <strong>{{ reply.user_name }} replied on {{ reply.created_at }}:</strong>
+                            <p>{{ reply.reply_content }}</p>
+
+                            <!-- Edit and Delete Buttons for Replies -->
+                            <button class="btn btn-outline-secondary btn-sm mt-1" data-toggle="modal" data-target="#editReplyModal{{ reply.reply_id }}">Edit Reply</button>
+                            <form action="{{ url_for('forum.delete_reply', reply_id=reply.reply_id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-outline-danger btn-sm mt-1">Delete Reply</button>
+                            </form>
+
+                            <!-- Edit Reply Modal -->
+                            <div class="modal fade" id="editReplyModal{{ reply.reply_id }}" tabindex="-1" role="dialog" aria-labelledby="editReplyModalLabel{{ reply.reply_id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editReplyModalLabel{{ reply.reply_id }}">Edit Reply</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ url_for('forum.edit_reply', reply_id=reply.reply_id) }}" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="edit_reply_content_{{ reply.reply_id }}">Reply Content:</label>
+                                                    <textarea id="edit_reply_content_{{ reply.reply_id }}" name="reply_content" class="form-control" rows="4" required>{{ reply.reply_content }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="ml-4">No replies yet. Be the first to reply!</div>
+                    {% endfor %}
+                    <form action="{{ url_for('forum.add_reply', post_id=post.post_id) }}" method="POST" class="mt-3">
+                        <div class="form-group">
+                            <label for="reply_user_name_{{ post.post_id }}">Your Name:</label>
+                            <input type="text" id="reply_user_name_{{ post.post_id }}" name="user_name" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="reply_content_{{ post.post_id }}">Reply:</label>
+                            <textarea id="reply_content_{{ post.post_id }}" name="reply_content" class="form-control" rows="2" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success btn-sm mt-2">Reply</button>
+                    </form>
+                </div>
+            </li>
+        {% else %}
+            <li class="list-group-item mb-4">No posts available. Be the first to add one!</li>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}

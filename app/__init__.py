@@ -13,8 +13,6 @@ app.register_blueprint(forum_bp)
 from app.blueprints.instructors import instructors_bp
 app.register_blueprint(instructors_bp)
 
-from app.blueprints.resources import resources_bp
-app.register_blueprint(resources_bp)
 
 from . import routes
 

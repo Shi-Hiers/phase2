@@ -1,18 +1,93 @@
 {% extends "base.html" %}
 {% block title %}Quiz & Practice - Music Education Website{% endblock %}
 {% block content %}
-<h2>Music Theory Quizzes and Practice</h2>
-<p>Test your knowledge of music theory and improve your listening skills with our quizzes and practice exercises!</p>
-<div>
-    <!-- Example Quiz Section -->
-    <h3>Music Theory Quiz</h3>
-    <p>Question: What is the interval between C and G?</p>
-    <input type="radio" id="fifth" name="interval" value="fifth">
-    <label for="fifth">Perfect Fifth</label><br>
-    <input type="radio" id="fourth" name="interval" value="fourth">
-    <label for="fourth">Perfect Fourth</label><br>
-    <input type="radio" id="third" name="interval" value="third">
-    <label for="third">Major Third</label><br>
-    <button>Submit</button>
+
+ <div class="jumbotron text-center bg-warning text-dark">
+    <h2>Music Theory Quizzes and Practice</h2>
+    <p class="lead">Test your knowledge of music theory and improve your listening skills with our quizzes and practice exercises!</p>
 </div>
+
+    <h4>1. Introduction to Music Theory</h4>
+    <p>Which note is used as the reference note for determining pitch in music theory?</p>
+    <input type="radio" id="a4" name="pitch" value="A4">
+    <label for="a4">A4</label><br>
+    <input type="radio" id="c4" name="pitch" value="C4">
+    <label for="c4">C4</label><br>
+    <input type="radio" id="e4" name="pitch" value="E4">
+    <label for="e4">E4</label><br>
+    <button onclick="checkAnswer('pitch', 'A4')">Submit Answer</button>
+
+    <h4>2. How to Play Piano for Beginners</h4>
+    <p>What is the best way to practice your piano skills as a beginner?</p>
+    <input type="radio" id="scales" name="piano_practice" value="scales">
+    <label for="scales">Practicing scales regularly</label><br>
+    <input type="radio" id="random_songs" name="piano_practice" value="random_songs">
+    <label for="random_songs">Playing random songs</label><br>
+    <input type="radio" id="watching_videos" name="piano_practice" value="watching_videos">
+    <label for="watching_videos">Watching instructional videos only</label><br>
+    <button onclick="checkAnswer('piano_practice', 'scales')">Submit Answer</button>
+
+    <h4>3. Guitar Chords for Beginners</h4>
+    <p>What is the first guitar chord that beginners should learn?</p>
+    <input type="radio" id="c_major" name="guitar_chord" value="C_major">
+    <label for="c_major">C Major</label><br>
+    <input type="radio" id="e_minor" name="guitar_chord" value="E_minor">
+    <label for="e_minor">E Minor</label><br>
+    <input type="radio" id="d_major" name="guitar_chord" value="D_major">
+    <label for="d_major">D Major</label><br>
+    <button onclick="checkAnswer('guitar_chord', 'E_minor')">Submit Answer</button>
+
+    <h4>4. Time Signatures Explained</h4>
+    <p>What does a 3/4 time signature mean?</p>
+    <input type="radio" id="three_beats" name="time_signature" value="three_beats">
+    <label for="three_beats">Three beats per measure</label><br>
+    <input type="radio" id="four_beats" name="time_signature" value="four_beats">
+    <label for="four_beats">Four beats per measure</label><br>
+    <input type="radio" id="six_beats" name="time_signature" value="six_beats">
+    <label for="six_beats">Six beats per measure</label><br>
+    <button onclick="checkAnswer('time_signature', 'three_beats')">Submit Answer</button>
+
+    <h4>5. How to Read Sheet Music</h4>
+    <p>What is the symbol for a whole note?</p>
+    <input type="radio" id="circle" name="whole_note" value="circle">
+    <label for="circle">A hollow circle with no stem</label><br>
+    <input type="radio" id="filled_circle" name="whole_note" value="filled_circle">
+    <label for="filled_circle">A filled-in circle with a stem</label><br>
+    <input type="radio" id="quarter_note" name="whole_note" value="quarter_note">
+    <label for="quarter_note">A filled-in circle with a flag</label><br>
+    <button onclick="checkAnswer('whole_note', 'circle')">Submit Answer</button>
+
+    <h4>6. Practice Techniques</h4>
+    <p>What is a recommended practice technique to help with mastering difficult parts of a piece?</p>
+    <input type="radio" id="slow_repetition" name="practice_technique" value="slow_repetition">
+    <label for="slow_repetition">Slow repetition of the part</label><br>
+    <input type="radio" id="skipping" name="practice_technique" value="skipping">
+    <label for="skipping">Skipping the difficult part</label><br>
+    <input type="radio" id="play_loud" name="practice_technique" value="play_loud">
+    <label for="play_loud">Playing as loudly as possible</label><br>
+    <button onclick="checkAnswer('practice_technique', 'slow_repetition')">Submit Answer</button>
+</div>
+
+<script>
+    function checkAnswer(questionName, correctAnswer) {
+        const options = document.getElementsByName(questionName);
+        let selectedAnswer = '';
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                selectedAnswer = options[i].value;
+                break;
+            }
+        }
+
+        if (selectedAnswer === '') {
+            alert('Please select an answer before submitting.');
+        } else if (selectedAnswer === correctAnswer) {
+            alert('Correct!');
+        } else {
+            alert('Incorrect. The correct answer was: ' + correctAnswer);
+        }
+    }
+</script>
 {% endblock %}
+

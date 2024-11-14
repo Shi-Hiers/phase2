@@ -25,7 +25,7 @@
 
     <!-- Piano Keys -->
     <div class="piano">
-        <div class="white-key" data-note="C"></div>
+        <div class="white-key" data-note="C2"></div>
         <div class="white-key" data-note="D"></div>
         <div class="white-key" data-note="E"></div>
         <div class="white-key" data-note="F"></div>
@@ -88,7 +88,7 @@
 
     function playScale(scale) {
         const scales = {
-            'C_major': ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
+            'C_major': ['C2', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
             'G_major': ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G'],
             'A_minor': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A']
         };
@@ -162,24 +162,24 @@
     // Play a note based on the given note name
     function playNoteWithIfStatement(note) {
         let audioFile = '';
-        if (note === 'C') {
+        if (note === 'C2') {
+            audioFile = 'lowc.wav';
+        } else if (note === 'C') {
             audioFile = 'piano-c_C_major.wav';
-        } else if (note === 'C2') {
-            audioFile = 'piano-c2_C2_major.wav';
         } else if (note === 'C#') {
             audioFile = 'piano-csharp_Csharp_major.wav';
         } else if (note === 'D') {
-            audioFile = 'piano-d_D_major.wav';
+            audioFile = 'd.wav';
         } else if (note === 'D#') {
             audioFile = 'piano-dsharp_Dsharp_major.wav';
         } else if (note === 'E') {
-            audioFile = 'piano-e_E_major.wav';
+            audioFile = 'e.wav';
         } else if (note === 'F') {
-            audioFile = 'piano-f_F_major.wav';
+            audioFile = 'f.wav';
         } else if (note === 'F#') {
             audioFile = 'piano-fsharp_Fsharp_major.wav';
         } else if (note === 'G') {
-            audioFile = 'piano-g_G_major.wav';
+            audioFile = 'g.wav';
         } else if (note === 'G#') {
             audioFile = 'piano-gsharp_Gsharp_major.wav';
         } else if (note === 'A') {

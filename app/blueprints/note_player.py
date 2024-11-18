@@ -7,10 +7,10 @@ pygame.mixer.init()
 
 # Dictionary to map notes to their corresponding sound files
 notes_sounds = {
-    'C': 'static/audio/c_C_major.wav',
-    'D': 'static/audio/d.wav',
-    'E': 'static/audio/e.wav',
-    'F': 'static/audio/f.wav',
+    'C': 'static/audio/piano-c_C_major.wav',
+    'D': 'static/audio/piano-d.wav',
+    'E': 'static/audio/piano-e.wav',
+    'F': 'static/audio/piano-f.wav',
     'G': 'static/audio/piano-g.wav',
     'A': 'static/audio/piano-a.wav',
     'B': 'static/audio/piano-b.wav'

@@ -105,7 +105,7 @@
 
     // Play random note for guessing game
     function playRandomNote() {
-        const notes = ['C', 'D', 'E', 'F', 'F#', 'G', 'A', 'B', 'C'];
+        const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
         const randomNote = notes[Math.floor(Math.random() * notes.length)];
         playNoteWithIfStatement(randomNote);
         updateCurrentNoteDisplay(randomNote);
@@ -176,9 +176,7 @@
             audioFile = 'e.wav';
         } else if (note === 'F') {
             audioFile = 'f.wav';
-        } else if (note === 'F#') {
-            audioFile = 'piano-fsharp_Fsharp_major.wav';
-        } else if (note === 'G') {
+        }  else if (note === 'G') {
             audioFile = 'g.wav';
         } else if (note === 'G#') {
             audioFile = 'piano-gsharp_Gsharp_major.wav';

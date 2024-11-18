@@ -14,6 +14,7 @@ notes_sounds = {
     'G': 'static/audio/piano-g.wav',
     'A': 'static/audio/piano-a.wav',
     'B': 'static/audio/piano-b.wav'
+
 }
 
 

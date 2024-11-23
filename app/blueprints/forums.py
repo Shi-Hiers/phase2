@@ -50,18 +50,6 @@ def edit_post(post_id):
     post = fetch_one("SELECT * FROM forum_posts WHERE post_id = %s", (post_id,))
     return render_template('edit_forum.html', post=post)
 
-@forum_bp.route('/like_post/<int:post_id>', methods=['POST'])
-def like_post(post_id):
-    try:
-        # Update likes_count for the post
-        execute_query("UPDATE forum_posts SET likes_count = likes_count + 1 WHERE post_id = %s", (post_id,))
-        # Fetch the updated likes count
-        likes_count = fetch_one("SELECT likes_count FROM forum_posts WHERE post_id = %s", (post_id,))['likes_count']
-        response = {"success": True, "likes_count": likes_count}
-    except Exception as e:
-        response = {"success": False, "error": str(e)}
-    return jsonify(response)
-
 @forum_bp.route('/delete_post/<int:post_id>', methods=['POST'])
 def delete_post(post_id):
     execute_query("DELETE FROM forum_posts WHERE post_id = %s", (post_id,))

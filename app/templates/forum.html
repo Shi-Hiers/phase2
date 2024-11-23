@@ -5,7 +5,6 @@
     <h2>Welcome to the Community Forum</h2>
     <p class="lead">Post your questions, share tips, and discuss anything related to music! Join our community to learn, share, and grow as musicians together.</p>
     <a href="{{ url_for('forum.add_post') }}" class="btn btn-primary mb-4">Add New Post</a>
-
 </div>
 
 <!-- Display Forum Posts -->
@@ -16,8 +15,6 @@
             <li class="list-group-item mb-4">
                 <strong>{{ post.user_name }} posted on "{{ post.topic }}" at {{ post.created_at }}:</strong>
                 <p>{{ post.post_content }}</p>
-                <p>Likes: <span id="like-count-{{ post.post_id }}">{{ post.likes_count }}</span></p>
-                <button class="btn btn-outline-primary btn-sm" onclick="likePost({{ post.post_id }})">Like</button>
 
                 <!-- Edit and Delete Buttons for Posts -->
                 <a href="{{ url_for('forum.edit_post', post_id=post.post_id) }}" class="btn btn-outline-secondary btn-sm mt-2">Edit</a>

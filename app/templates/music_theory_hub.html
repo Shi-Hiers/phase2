@@ -6,81 +6,139 @@
     <h2>Interactive Music Theory Tools</h2>
     <p class="lead">Explore our interactive tools to learn music theory in an engaging way. Practice scales, chords, and ear training exercises to improve your understanding of music fundamentals.</p>
 </div>
-<!-- Interactive Touchable Piano -->
-<div class="touchable-piano mt-5">
-    <h3>Interactive Piano</h3>
-    <p>Click on the keys to hear the notes and practice playing scales, chords, and individual notes!</p>
 
-    <!-- Note Labels Above Keys -->
-    <div class="note-labels">
-        <div class="note-label">C</div>
-        <div class="note-label">D</div>
-        <div class="note-label">E</div>
-        <div class="note-label">F</div>
-        <div class="note-label">G</div>
-        <div class="note-label">A</div>
-        <div class="note-label">B</div>
-        <div class="note-label">C</div>
+<div class="container my-5">
+    <!-- Interactive Touchable Piano -->
+    <div class="interactive-tool py-4">
+        <h2 class="text-primary mb-3">Interactive Piano</h2>
+        <p class="mb-4">Click on the keys to hear the notes and practice playing scales, chords, and individual notes!</p>
+
+        <div class="note-labels mb-2">
+            <div class="note-label">C</div>
+            <div class="note-label">D</div>
+            <div class="note-label">E</div>
+            <div class="note-label">F</div>
+            <div class="note-label">G</div>
+            <div class="note-label">A</div>
+            <div class="note-label">B</div>
+            <div class="note-label">C</div>
+        </div>
+
+        <div class="piano">
+            <div class="white-key" data-note="C2"></div>
+            <div class="white-key" data-note="D"></div>
+            <div class="white-key" data-note="E"></div>
+            <div class="white-key" data-note="F"></div>
+            <div class="white-key" data-note="G"></div>
+            <div class="white-key" data-note="A"></div>
+            <div class="white-key" data-note="B"></div>
+            <div class="white-key" data-note="C"></div>
+        </div>
     </div>
 
-    <!-- Piano Keys -->
-    <div class="piano">
-        <div class="white-key" data-note="C2"></div>
-        <div class="white-key" data-note="D"></div>
-        <div class="white-key" data-note="E"></div>
-        <div class="white-key" data-note="F"></div>
-        <div class="white-key" data-note="G"></div>
-        <div class="white-key" data-note="A"></div>
-        <div class="white-key" data-note="B"></div>
-        <div class="white-key" data-note="C"></div>
+    <!-- Note Guessing Game -->
+    <div class="interactive-tool py-4">
+        <h2 class="text-primary mb-3">Note Guessing Game</h2>
+        <p class="mb-4">Listen to a note and try to guess which note it is. Click the button to play a note and type your answer.</p>
+        <button onclick="playRandomNote()" class="btn btn-primary">Play Note</button>
+    </div>
+
+    <!-- Chord Matching Game -->
+    <div class="interactive-tool py-4">
+        <h2 class="text-primary mb-3">Chord Matching Game</h2>
+        <p class="mb-4">Learn the first four chords every guitar beginner should know! Listen to the chords and try to match them correctly. Click the button to play a chord and select the correct answer.</p>
+        <button onclick="playRandomChord()" class="btn btn-primary">Play Chord</button>
+        <select id="chord-select" class="form-select mt-3">
+            <option value="E_minor">E Minor</option>
+            <option value="C_major">C Major</option>
+            <option value="G_major">G Major</option>
+            <option value="D_sus4">D Sus4</option>
+        </select>
+        <button onclick="checkChordAnswer()" class="btn btn-success mt-3">Submit Answer</button>
+    </div>
+
+    <!-- Scales Trainer -->
+    <div class="interactive-tool py-4">
+        <h2 class="text-primary mb-3">Interactive Scales Trainer</h2>
+        <p class="mb-4">Use the interactive scales trainer to practice playing different scales and see how they sound. Select a scale and click through the notes to follow along.</p>
+
+        <h4 id="current-note" class="text-info mt-3"></h4>
+        <label for="scale-select" class="form-label">Choose a scale:</label>
+        <select id="scale-select" class="form-select">
+            <option value="C_major">C Major</option>
+            <option value="G_major">G Major</option>
+            <option value="A_minor">A Minor</option>
+        </select>
+        <button onclick="playSelectedScale()" class="btn btn-primary mt-3">Play Selected Scale</button>
     </div>
 </div>
 
-<!-- Note Guessing Game -->
-<div class="note-guessing mt-5">
-    <h3>Note Guessing Game</h3>
-    <p>Listen to a note and try to guess which note it is. Click the button to play a note and type your answer.</p>
-    <button onclick="playRandomNote()" class="btn btn-primary">Play Note</button>
-</div>
+<style>
+    .interactive-tool {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-<!-- Chord Matching Game -->
-<div class="chord-matching mt-5">
-    <h3>Chord Matching Game</h3>
-    <p>Learn the first four chords every guitar beginner should know! Listen to the chords and try to match them correctly. Click the button to play a chord and select the correct answer.</p>
-    <button onclick="playRandomChord()" class="btn btn-primary">Play Chord</button>
-    <select id="chord-select" class="mt-3">
-        <option value="E_minor">E Minor</option>
-        <option value="C_major">C Major</option>
-        <option value="G_major">G Major</option>
-        <option value="D_sus4">D Sus4</option>
-    </select>
-    <button onclick="checkChordAnswer()" class="btn btn-success mt-2">Submit Answer</button>
-</div>
+    .note-labels {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+        font-weight: bold;
+        font-size: 16px;
+        color: #555;
+    }
 
-<!-- Scales Trainer -->
-<div class="scales-trainer mt-5">
-    <h3>Interactive Scales Trainer</h3>
-    <p>Use the interactive scales trainer to practice playing different scales and see how they sound. Select a scale and click through the notes to follow along.</p>
+    .note-label {
+        width: 60px;
+        text-align: center;
+    }
 
-    <!-- Display notes being played -->
-    <h4 id="current-note" class="text-info mt-3"></h4>
+    .piano {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 700px;
+        margin: 10px auto;
+    }
 
-    <label for="scale-select">Choose a scale:</label>
-    <select id="scale-select">
-        <option value="C_major">C Major</option>
-        <option value="G_major">G Major</option>
-        <option value="A_minor">A Minor</option>
-    </select>
-    <button onclick="playSelectedScale()" class="btn btn-primary mt-3">Play Selected Scale</button>
-</div>
+    .white-key {
+        width: 60px;
+        height: 200px;
+        background: white;
+        border: 1px solid black;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .white-key:hover {
+        background: #f0f0f0;
+    }
+
+    .black-key {
+        width: 40px;
+        height: 120px;
+        background: black;
+        position: absolute;
+        left: 45px;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .black-key:hover {
+        background: #333;
+    }
+</style>
 
 <script>
-    // Update current note display
     function updateCurrentNoteDisplay(note) {
         document.getElementById('current-note').innerText = `Now Playing: ${note}`;
     }
 
-    // Play selected scale
     function playSelectedScale() {
         const scale = document.getElementById('scale-select').value;
         playScale(scale);
@@ -89,7 +147,7 @@
     function playScale(scale) {
         const scales = {
             'C_major': ['C2', 'D', 'E', 'F', 'G', 'A', 'B', 'C'],
-            'G_major': ['G', 'A', 'B', 'C', 'D', 'E', 'F', 'G'],
+            'G_major': ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G'],
             'A_minor': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A']
         };
 
@@ -99,11 +157,10 @@
                 playNoteWithIfStatement(note);
                 updateCurrentNoteDisplay(note);
             }, delay);
-            delay += 500; // 500 ms between notes
+            delay += 500;
         });
     }
 
-    // Play random note for guessing game
     function playRandomNote() {
         const notes = ['C', 'D', 'E', 'F', 'F#', 'G', 'A', 'B', 'C'];
         const randomNote = notes[Math.floor(Math.random() * notes.length)];
@@ -120,24 +177,20 @@
         }, 1000);
     }
 
-    // Play random chord for chord matching game
     function playRandomChord() {
         const chords = {
             'E_minor': 'E_minor.wav',
             'C_major': 'C_major.wav',
             'G_major': 'G_major.wav',
-            'D_sus4': 'D_major.wav'
+            'D_sus4': 'D_sus4.wav'
         };
         const chordNames = Object.keys(chords);
         const randomChord = chordNames[Math.floor(Math.random() * chordNames.length)];
 
-        // Play the chord audio
         playChordAudio(chords[randomChord]);
-
         document.getElementById('chord-select').setAttribute('data-current-chord', randomChord);
     }
 
-    // Play chord audio
     function playChordAudio(audioFile) {
         if (audioFile) {
             const audio = new Audio(`/static/audio/${audioFile}`);
@@ -146,6 +199,7 @@
             });
         }
     }
+
 
     // Check if chord answer is correct
     function checkChordAnswer() {

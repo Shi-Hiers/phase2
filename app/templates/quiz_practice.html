@@ -2,70 +2,197 @@
 {% block title %}Quiz & Practice - Music Education Website{% endblock %}
 {% block content %}
 
- <div class="jumbotron text-center bg-warning text-dark">
+<div class="jumbotron text-center bg-warning text-dark">
     <h2>Music Theory Quizzes and Practice</h2>
     <p class="lead">Test your knowledge of music theory and improve your listening skills with our quizzes and practice exercises!</p>
 </div>
 
-    <h4>1. Introduction to Music Theory</h4>
-    <p>Which note is used as the reference note for determining pitch in music theory?</p>
-    <input type="radio" id="a4" name="pitch" value="A4">
-    <label for="a4">A4</label><br>
-    <input type="radio" id="c4" name="pitch" value="C4">
-    <label for="c4">C4</label><br>
-    <input type="radio" id="e4" name="pitch" value="E4">
-    <label for="e4">E4</label><br>
-    <button onclick="checkAnswer('pitch', 'A4')">Submit Answer</button>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="accordion" id="quizAccordion">
+                <!-- Question 1 -->
+                <div class="card">
+                    <div class="card-header" id="heading1">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                1. Introduction to Music Theory
+                            </button>
+                        </h5>
+                    </div>
 
-    <h4>2. How to Play Piano for Beginners</h4>
-    <p>What is the best way to practice your piano skills as a beginner?</p>
-    <input type="radio" id="scales" name="piano_practice" value="scales">
-    <label for="scales">Practicing scales regularly</label><br>
-    <input type="radio" id="random_songs" name="piano_practice" value="random_songs">
-    <label for="random_songs">Playing random songs</label><br>
-    <input type="radio" id="watching_videos" name="piano_practice" value="watching_videos">
-    <label for="watching_videos">Watching instructional videos only</label><br>
-    <button onclick="checkAnswer('piano_practice', 'scales')">Submit Answer</button>
+                    <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#quizAccordion">
+                        <div class="card-body">
+                            <p>Which note is used as the reference note for determining pitch in music theory?</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="a4" name="pitch" value="A4">
+                                <label class="form-check-label" for="a4">A4</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="c4" name="pitch" value="C4">
+                                <label class="form-check-label" for="c4">C4</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="e4" name="pitch" value="E4">
+                                <label class="form-check-label" for="e4">E4</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('pitch', 'A4')">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
 
-    <h4>3. Guitar Chords for Beginners</h4>
-    <p>What is the first guitar chord that beginners should learn?</p>
-    <input type="radio" id="c_major" name="guitar_chord" value="C_major">
-    <label for="c_major">C Major</label><br>
-    <input type="radio" id="e_minor" name="guitar_chord" value="E_minor">
-    <label for="e_minor">E Minor</label><br>
-    <input type="radio" id="d_major" name="guitar_chord" value="D_major">
-    <label for="d_major">D Major</label><br>
-    <button onclick="checkAnswer('guitar_chord', 'E_minor')">Submit Answer</button>
+                <!-- Question 2 -->
+                <div class="card">
+                    <div class="card-header" id="heading2">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                2. How to Play Piano for Beginners
+                            </button>
+                        </h5>
+                    </div>
 
-    <h4>4. Time Signatures Explained</h4>
-    <p>What does a 3/4 time signature mean?</p>
-    <input type="radio" id="three_beats" name="time_signature" value="three_beats">
-    <label for="three_beats">Three beats per measure</label><br>
-    <input type="radio" id="four_beats" name="time_signature" value="four_beats">
-    <label for="four_beats">Four beats per measure</label><br>
-    <input type="radio" id="six_beats" name="time_signature" value="six_beats">
-    <label for="six_beats">Six beats per measure</label><br>
-    <button onclick="checkAnswer('time_signature', 'three_beats')">Submit Answer</button>
+                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#quizAccordion">
+                        <div class="card-body">
+                            <p>What is the best way to practice your piano skills as a beginner?</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="scales" name="piano_practice" value="scales">
+                                <label class="form-check-label" for="scales">Practicing scales regularly</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="random_songs" name="piano_practice" value="random_songs">
+                                <label class="form-check-label" for="random_songs">Playing random songs</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="watching_videos" name="piano_practice" value="watching_videos">
+                                <label class="form-check-label" for="watching_videos">Watching instructional videos only</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('piano_practice', 'scales')">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
 
-    <h4>5. How to Read Sheet Music</h4>
-    <p>What is the symbol for a whole note?</p>
-    <input type="radio" id="circle" name="whole_note" value="circle">
-    <label for="circle">A hollow circle with no stem</label><br>
-    <input type="radio" id="filled_circle" name="whole_note" value="filled_circle">
-    <label for="filled_circle">A filled-in circle with a stem</label><br>
-    <input type="radio" id="quarter_note" name="whole_note" value="quarter_note">
-    <label for="quarter_note">A filled-in circle with a flag</label><br>
-    <button onclick="checkAnswer('whole_note', 'circle')">Submit Answer</button>
+                <!-- Question 3 -->
+<div class="card">
+    <div class="card-header" id="heading3">
+        <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                3. Guitar Chords for Beginners
+            </button>
+        </h5>
+    </div>
 
-    <h4>6. Practice Techniques</h4>
-    <p>What is a recommended practice technique to help with mastering difficult parts of a piece?</p>
-    <input type="radio" id="slow_repetition" name="practice_technique" value="slow_repetition">
-    <label for="slow_repetition">Slow repetition of the part</label><br>
-    <input type="radio" id="skipping" name="practice_technique" value="skipping">
-    <label for="skipping">Skipping the difficult part</label><br>
-    <input type="radio" id="play_loud" name="practice_technique" value="play_loud">
-    <label for="play_loud">Playing as loudly as possible</label><br>
-    <button onclick="checkAnswer('practice_technique', 'slow_repetition')">Submit Answer</button>
+    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#quizAccordion">
+        <div class="card-body">
+            <p>What is the first guitar chord that beginners should learn?</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="c_major" name="guitar_chord" value="C_major">
+                <label class="form-check-label" for="c_major">C Major</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="e_minor" name="guitar_chord" value="E_minor">
+                <label class="form-check-label" for="e_minor">E Minor</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="d_major" name="guitar_chord" value="D_major">
+                <label class="form-check-label" for="d_major">D Major</label>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="checkAnswer('guitar_chord', 'E_minor')">Submit Answer</button>
+        </div>
+    </div>
+</div>
+
+<!-- Question 4 -->
+<div class="card">
+    <div class="card-header" id="heading4">
+        <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                4. Time Signatures Explained
+            </button>
+        </h5>
+    </div>
+
+    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#quizAccordion">
+        <div class="card-body">
+            <p>What does a 3/4 time signature mean?</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="three_beats" name="time_signature" value="three_beats">
+                <label class="form-check-label" for="three_beats">Three beats per measure</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="four_beats" name="time_signature" value="four_beats">
+                <label class="form-check-label" for="four_beats">Four beats per measure</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="six_beats" name="time_signature" value="six_beats">
+                <label class="form-check-label" for="six_beats">Six beats per measure</label>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="checkAnswer('time_signature', 'three_beats')">Submit Answer</button>
+        </div>
+    </div>
+</div>
+
+<!-- Question 5 -->
+<div class="card">
+    <div class="card-header" id="heading5">
+        <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                5. How to Read Sheet Music
+            </button>
+        </h5>
+    </div>
+
+    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#quizAccordion">
+        <div class="card-body">
+            <p>What is the symbol for a whole note?</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="circle" name="whole_note" value="circle">
+                <label class="form-check-label" for="circle">A hollow circle with no stem</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="filled_circle" name="whole_note" value="filled_circle">
+                <label class="form-check-label" for="filled_circle">A filled-in circle with a stem</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="quarter_note" name="whole_note" value="quarter_note">
+                <label class="form-check-label" for="quarter_note">A filled-in circle with a flag</label>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="checkAnswer('whole_note', 'circle')">Submit Answer</button>
+        </div>
+    </div>
+</div>
+
+<!-- Question 6 -->
+<div class="card">
+    <div class="card-header" id="heading6">
+        <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                6. Practice Techniques
+            </button>
+        </h5>
+    </div>
+
+    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#quizAccordion">
+        <div class="card-body">
+            <p>What is a recommended practice technique to help with mastering difficult parts of a piece?</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="slow_repetition" name="practice_technique" value="slow_repetition">
+                <label class="form-check-label" for="slow_repetition">Slow repetition of the part</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="skipping" name="practice_technique" value="skipping">
+                <label class="form-check-label" for="skipping">Skipping the difficult part</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="play_loud" name="practice_technique" value="play_loud">
+                <label class="form-check-label" for="play_loud">Playing as loudly as possible</label>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="checkAnswer('practice_technique', 'slow_repetition')">Submit Answer</button>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -90,4 +217,3 @@
     }
 </script>
 {% endblock %}
-

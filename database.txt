@@ -1,0 +1,38 @@
+Database Structure
+
+---
+
+### Table: forum_posts
+- **post_id**: int, Auto Increment, Primary Key
+- **user_name**: varchar(50)
+- **post_content**: text
+- **created_at**: datetime
+- **updated_at**: datetime
+- **topic**: varchar(100)
+- **likes_count**: int
+
+---
+
+### Table: forum_replies
+- **reply_id**: int, Auto Increment, Primary Key
+- **post_id**: int, Foreign Key referencing `forum_posts(post_id)`
+- **user_name**: varchar(50)
+- **reply_content**: text
+- **created_at**: datetime
+
+---
+
+### Table: instructors
+- **instructor_id**: int, Auto Increment, Primary Key
+- **name**: varchar(100)
+- **specialty**: varchar(100)
+- **bio**: text
+
+---
+
+### Table: testimonials
+- **id**: int, Auto Increment, Primary Key
+- **name**: varchar(100)
+- **email**: varchar(100)
+- **message**: text
+- **created_at**: timestamp

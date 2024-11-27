@@ -2,11 +2,12 @@
 {% block title %}Instructors - Music Education Website{% endblock %}
 {% block content %}
 
-<div class="jumbotron text-center bg-warning text-dark">
+<div class="bg-warning text-dark text-center p-5 mb-4 rounded">
     <h2>Meet Our Instructors</h2>
     <p class="lead">Our dedicated instructors are here to guide you through your musical journey, from basics to advanced techniques. Learn more about each instructor and find the right fit for your learning style.</p>
-    <a href="{{ url_for('instructors.add_instructor') }}" class="btn btn-primary btn-lg" role="button">Add Instructor</a>
+    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#addInstructorModal">Add Instructor</button>
 </div>
+
 
 <div class="container my-4">
     <table class="table table-striped">
@@ -33,15 +34,77 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{{ url_for('instructors.edit_instructor', instructor_id=instructor.instructor_id) }}" class="btn btn-warning text-dark">Edit</a>
+                        <!-- Edit Button -->
+                        <button type="button" class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#editInstructorModal-{{ instructor.instructor_id }}">
+                            Edit
+                        </button>
+                        <!-- Delete Form -->
                         <form action="{{ url_for('instructors.delete_instructor', instructor_id=instructor.instructor_id) }}" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
+
+                <!-- Edit Instructor Modal -->
+                <div class="modal fade" id="editInstructorModal-{{ instructor.instructor_id }}" tabindex="-1" aria-labelledby="editInstructorModalLabel-{{ instructor.instructor_id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editInstructorModalLabel-{{ instructor.instructor_id }}">Edit Instructor</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{ url_for('instructors.edit_instructor', instructor_id=instructor.instructor_id) }}">
+                                    <div class="form-group">
+                                        <label for="name-{{ instructor.instructor_id }}">Name:</label>
+                                        <input type="text" id="name-{{ instructor.instructor_id }}" name="name" class="form-control" required value="{{ instructor.name }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="specialty-{{ instructor.instructor_id }}">Specialty:</label>
+                                        <input type="text" id="specialty-{{ instructor.instructor_id }}" name="specialty" class="form-control" required value="{{ instructor.specialty }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bio-{{ instructor.instructor_id }}">Biography:</label>
+                                        <textarea id="bio-{{ instructor.instructor_id }}" name="bio" class="form-control">{{ instructor.bio }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">Update Instructor</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+<!-- Add Instructor Modal -->
+<div class="modal fade" id="addInstructorModal" tabindex="-1" aria-labelledby="addInstructorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addInstructorModalLabel">Add New Instructor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('instructors.add_instructor') }}">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialty">Specialty:</label>
+                        <input type="text" id="specialty" name="specialty" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Biography:</label>
+                        <textarea id="bio" name="bio" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Add Instructor</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>

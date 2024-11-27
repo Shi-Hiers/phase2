@@ -1,24 +1,39 @@
 {% extends "base.html" %}
-{% block title %}Add Instructor - Music Education Website{% endblock %}
+{% block title %}Manage Instructors - Music Education Website{% endblock %}
 {% block content %}
-<h2>Add New Instructor</h2>
+<h2>Manage Instructors</h2>
 
-<form method="POST" action="{{ url_for('instructors.add_instructor') }}">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" class="form-control" required>
+<!-- Add Instructor Button -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addInstructorModal">
+    Add New Instructor
+</button>
+
+<!-- Add Instructor Modal -->
+<div class="modal fade" id="addInstructorModal" tabindex="-1" aria-labelledby="addInstructorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addInstructorModalLabel">Add New Instructor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addInstructorForm" method="POST" action="{{ url_for('instructors.add_instructor') }}">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialty">Specialty:</label>
+                        <input type="text" id="specialty" name="specialty" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Biography:</label>
+                        <textarea id="bio" name="bio" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Add Instructor</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="specialty">Specialty:</label>
-        <input type="text" id="specialty" name="specialty" class="form-control" required>
-    </div>
-
-    <div class="form-group">
-        <label for="bio">Biography:</label>
-        <textarea id="bio" name="bio" class="form-control"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Add Instructor</button>
-</form>
+</div>
 {% endblock %}

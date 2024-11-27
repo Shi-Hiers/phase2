@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 {% block title %}Testimonials - Music Education Website{% endblock %}
 {% block content %}
-<div class="jumbotron text-center bg-warning text-dark">
-    <h2>Share Your Experience</h2>
-    <p class="lead">Your feedback helps us grow! Add your testimonial to inspire others.</p>
-    <a href="{{ url_for('testimonials.add_testimonial') }}" class="btn btn-primary btn-lg mt-3">Add Your Testimonial</a>
+
+<!-- Jumbotron Section -->
+<div class="bg-warning text-dark text-center p-5 mb-4 rounded">
+    <h2>What Our Users Say</h2>
+    <p class="lead">Read testimonials from our users and share your own experience!</p>
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addTestimonialModal">
+        Add Your Testimonial
+    </button>
 </div>
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">What Our Users Say</h2>
-    <div class="row">
+<!-- Testimonials Grid -->
+<div class="container my-5">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
         {% for testimonial in testimonials %}
-        <div class="col-md-6 mb-4">
-            <div class="card">
+        <div class="col">
+            <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <blockquote class="blockquote">
+                    <blockquote class="blockquote mb-0">
                         <p>"{{ testimonial.message }}"</p>
                         <footer class="blockquote-footer">{{ testimonial.name }}</footer>
                     </blockquote>
@@ -24,4 +29,34 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Modal for Adding Testimonial -->
+<div class="modal fade" id="addTestimonialModal" tabindex="-1" aria-labelledby="addTestimonialModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTestimonialModalLabel">Add Your Testimonial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('testimonials.add_testimonial') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

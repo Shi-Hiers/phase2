@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Community Forum - Music Education Website{% endblock %}
 {% block content %}
-<div class="jumbotron text-center bg-warning text-dark py-4">
+
+<!-- Jumbotron Section -->
+<div class="bg-warning text-dark text-center p-5 mb-4 rounded">
     <h2>Welcome to the Community Forum</h2>
     <p class="lead">Post your questions, share tips, and discuss anything related to music! Join our community to learn, share, and grow as musicians together.</p>
-    <a href="{{ url_for('forum.add_post') }}" class="btn btn-primary mb-4">Add New Post</a>
+    <!-- Button to trigger the modal for adding a new post -->
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addPostModal">
+        Add New Post
+    </button>
 </div>
 
 <!-- Display Forum Posts -->
@@ -20,50 +25,22 @@
                     <div class="card-body">
                         <p class="card-text" style="font-size: 1.25rem;">{{ post.post_content }}</p>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ url_for('forum.edit_post', post_id=post.post_id) }}" class="btn btn-outline-secondary btn-sm mr-2">Edit</a>
+                            <!-- Edit Button to Trigger Modal -->
+                            <button type="button" class="btn btn-outline-secondary btn-sm mr-2" data-bs-toggle="modal" data-bs-target="#editPostModal{{ post.post_id }}">
+                                Edit
+                            </button>
                             <form action="{{ url_for('forum.delete_post', post_id=post.post_id) }}" method="POST" style="display:inline;">
                                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                             </form>
                         </div>
                     </div>
+
                     <div class="card-footer bg-light">
                         <h5>Replies</h5>
                         {% for reply in post.replies %}
-                            <div class="border rounded p-3 mb-2 " style="background-color: #fffacd;">
+                            <div class="border rounded p-3 mb-2" style="background-color: #fffacd;">
                                 <strong>{{ reply.user_name }}</strong> replied on {{ reply.created_at }}:
                                 <p style="font-size: 1.25rem;">{{ reply.reply_content }}</p>
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-outline-secondary btn-sm mr-2" data-toggle="modal" data-target="#editReplyModal{{ reply.reply_id }}">Edit</button>
-                                    <form action="{{ url_for('forum.delete_reply', reply_id=reply.reply_id) }}" method="POST" style="display:inline;">
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                                    </form>
-                                </div>
-
-                                <!-- Edit Reply Modal -->
-                                <div class="modal fade" id="editReplyModal{{ reply.reply_id }}" tabindex="-1" role="dialog" aria-labelledby="editReplyModalLabel{{ reply.reply_id }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editReplyModalLabel{{ reply.reply_id }}">Edit Reply</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="{{ url_for('forum.edit_reply', reply_id=reply.reply_id) }}" method="POST">
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="edit_reply_content_{{ reply.reply_id }}">Reply Content:</label>
-                                                        <textarea id="edit_reply_content_{{ reply.reply_id }}" name="reply_content" class="form-control" rows="4" required>{{ reply.reply_content }}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         {% else %}
                             <div class="p-3 bg-light rounded">No replies yet. Be the first to reply!</div>
@@ -81,10 +58,65 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- Edit Post Modal -->
+                <div class="modal fade" id="editPostModal{{ post.post_id }}" tabindex="-1" aria-labelledby="editPostModalLabel{{ post.post_id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editPostModalLabel{{ post.post_id }}">Edit Post</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ url_for('forum.edit_post', post_id=post.post_id) }}" method="POST">
+                                    <div class="form-group">
+                                        <label for="edit_title_{{ post.post_id }}">Topic:</label>
+                                        <input type="text" id="edit_title_{{ post.post_id }}" name="title" class="form-control" value="{{ post.topic }}" required>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label for="edit_content_{{ post.post_id }}">Post Content:</label>
+                                        <textarea id="edit_content_{{ post.post_id }}" name="content" class="form-control" rows="4" required>{{ post.post_content }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% else %}
                 <div class="alert alert-info text-center">No posts available. Be the first to add one!</div>
             {% endfor %}
         </div>
     </div>
 </div>
+
+<!-- Modal for Adding New Post -->
+<div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="addPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addPostModalLabel">Create a New Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('forum.add_post') }}" method="POST">
+                    <div class="form-group">
+                        <label for="user_name">Your Name:</label>
+                        <input type="text" id="user_name" name="user_name" class="form-control" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="title">Topic:</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="content">Post Content:</label>
+                        <textarea id="content" name="content" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

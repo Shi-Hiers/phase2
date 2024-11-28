@@ -15,13 +15,12 @@
                 <div class="card">
                     <div class="card-header" id="heading1">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                 1. Introduction to Music Theory
                             </button>
                         </h5>
                     </div>
-
-                    <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#quizAccordion">
+                    <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-bs-parent="#quizAccordion">
                         <div class="card-body">
                             <p>Which note is used as the reference note for determining pitch in music theory?</p>
                             <div class="form-check">
@@ -45,13 +44,12 @@
                 <div class="card">
                     <div class="card-header" id="heading2">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                                 2. How to Play Piano for Beginners
                             </button>
                         </h5>
                     </div>
-
-                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#quizAccordion">
+                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-bs-parent="#quizAccordion">
                         <div class="card-body">
                             <p>What is the best way to practice your piano skills as a beginner?</p>
                             <div class="form-check">
@@ -66,130 +64,127 @@
                                 <input class="form-check-input" type="radio" id="watching_videos" name="piano_practice" value="watching_videos">
                                 <label class="form-check-label" for="watching_videos">Watching instructional videos only</label>
                             </div>
-                            <button class="btn btn-primary mt-3" onclick="checkAnswer('piano_practice', 'scales')">Submit Answer</button>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('piano_practice', 'Practicing scales regularly')">Submit Answer</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Question 3 -->
-<div class="card">
-    <div class="card-header" id="heading3">
-        <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                3. Guitar Chords for Beginners
-            </button>
-        </h5>
-    </div>
+                <div class="card">
+                    <div class="card-header" id="heading3">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                3. Guitar Chords for Beginners
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-bs-parent="#quizAccordion">
+                        <div class="card-body">
+                            <p>What is the first guitar chord that beginners should learn?</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="c_major" name="guitar_chord" value="C_major">
+                                <label class="form-check-label" for="c_major">C Major</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="e_minor" name="guitar_chord" value="E_minor">
+                                <label class="form-check-label" for="e_minor">E Minor</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="d_major" name="guitar_chord" value="D_major">
+                                <label class="form-check-label" for="d_major">D Major</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('guitar_chord', 'E_minor')">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
 
-    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#quizAccordion">
-        <div class="card-body">
-            <p>What is the first guitar chord that beginners should learn?</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="c_major" name="guitar_chord" value="C_major">
-                <label class="form-check-label" for="c_major">C Major</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="e_minor" name="guitar_chord" value="E_minor">
-                <label class="form-check-label" for="e_minor">E Minor</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="d_major" name="guitar_chord" value="D_major">
-                <label class="form-check-label" for="d_major">D Major</label>
-            </div>
-            <button class="btn btn-primary mt-3" onclick="checkAnswer('guitar_chord', 'E_minor')">Submit Answer</button>
-        </div>
-    </div>
-</div>
+                <!-- Question 4 -->
+                <div class="card">
+                    <div class="card-header" id="heading4">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                4. Time Signatures Explained
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-bs-parent="#quizAccordion">
+                        <div class="card-body">
+                            <p>What does a 3/4 time signature mean?</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="three_beats" name="time_signature" value="three_beats">
+                                <label class="form-check-label" for="three_beats">Three beats per measure</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="four_beats" name="time_signature" value="four_beats">
+                                <label class="form-check-label" for="four_beats">Four beats per measure</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="six_beats" name="time_signature" value="six_beats">
+                                <label class="form-check-label" for="six_beats">Six beats per measure</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('time_signature', 'Three beats per measure')">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Question 4 -->
-<div class="card">
-    <div class="card-header" id="heading4">
-        <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                4. Time Signatures Explained
-            </button>
-        </h5>
-    </div>
+                <!-- Question 5 -->
+                <div class="card">
+                    <div class="card-header" id="heading5">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                5. How to Read Sheet Music
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-bs-parent="#quizAccordion">
+                        <div class="card-body">
+                            <p>What is the symbol for a whole note?</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="circle" name="whole_note" value="circle">
+                                <label class="form-check-label" for="circle">A hollow circle with no stem</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="filled_circle" name="whole_note" value="filled_circle">
+                                <label class="form-check-label" for="filled_circle">A filled-in circle with a stem</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="quarter_note" name="whole_note" value="quarter_note">
+                                <label class="form-check-label" for="quarter_note">A filled-in circle with a flag</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('whole_note', 'A hollow circle with no stem')">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
 
-    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#quizAccordion">
-        <div class="card-body">
-            <p>What does a 3/4 time signature mean?</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="three_beats" name="time_signature" value="three_beats">
-                <label class="form-check-label" for="three_beats">Three beats per measure</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="four_beats" name="time_signature" value="four_beats">
-                <label class="form-check-label" for="four_beats">Four beats per measure</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="six_beats" name="time_signature" value="six_beats">
-                <label class="form-check-label" for="six_beats">Six beats per measure</label>
-            </div>
-            <button class="btn btn-primary mt-3" onclick="checkAnswer('time_signature', 'three_beats')">Submit Answer</button>
-        </div>
-    </div>
-</div>
+                <!-- Question 6 -->
+                <div class="card">
+                    <div class="card-header" id="heading6">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                6. Practice Techniques
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-bs-parent="#quizAccordion">
+                        <div class="card-body">
+                            <p>What is a recommended practice technique to help with mastering difficult parts of a piece?</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="slow_repetition" name="practice_technique" value="slow_repetition">
+                                <label class="form-check-label" for="slow_repetition">Slow repetition of the part</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="skipping" name="practice_technique" value="skipping">
+                                <label class="form-check-label" for="skipping">Skipping the difficult part</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="play_loud" name="practice_technique" value="play_loud">
+                                <label class="form-check-label" for="play_loud">Playing as loudly as possible</label>
+                            </div>
+                            <button class="btn btn-primary mt-3" onclick="checkAnswer('practice_technique', 'Slow repetition of the part')">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Question 5 -->
-<div class="card">
-    <div class="card-header" id="heading5">
-        <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                5. How to Read Sheet Music
-            </button>
-        </h5>
-    </div>
-
-    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#quizAccordion">
-        <div class="card-body">
-            <p>What is the symbol for a whole note?</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="circle" name="whole_note" value="circle">
-                <label class="form-check-label" for="circle">A hollow circle with no stem</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="filled_circle" name="whole_note" value="filled_circle">
-                <label class="form-check-label" for="filled_circle">A filled-in circle with a stem</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="quarter_note" name="whole_note" value="quarter_note">
-                <label class="form-check-label" for="quarter_note">A filled-in circle with a flag</label>
-            </div>
-            <button class="btn btn-primary mt-3" onclick="checkAnswer('whole_note', 'circle')">Submit Answer</button>
-        </div>
-    </div>
-</div>
-
-<!-- Question 6 -->
-<div class="card">
-    <div class="card-header" id="heading6">
-        <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                6. Practice Techniques
-            </button>
-        </h5>
-    </div>
-
-    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#quizAccordion">
-        <div class="card-body">
-            <p>What is a recommended practice technique to help with mastering difficult parts of a piece?</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="slow_repetition" name="practice_technique" value="slow_repetition">
-                <label class="form-check-label" for="slow_repetition">Slow repetition of the part</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="skipping" name="practice_technique" value="skipping">
-                <label class="form-check-label" for="skipping">Skipping the difficult part</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="play_loud" name="practice_technique" value="play_loud">
-                <label class="form-check-label" for="play_loud">Playing as loudly as possible</label>
-            </div>
-            <button class="btn btn-primary mt-3" onclick="checkAnswer('practice_technique', 'slow_repetition')">Submit Answer</button>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </div>
@@ -216,4 +211,5 @@
         }
     }
 </script>
+
 {% endblock %}
